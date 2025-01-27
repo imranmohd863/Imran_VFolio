@@ -3,28 +3,7 @@
 
 <head>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script type="text/javascript">
-      (function() {
-          // https://dashboard.emailjs.com/admin/account
-          emailjs.init({
-            publicKey: "JBLnPIKPKTW7Pf0G7",
-          });
-      })();
-  </script>
-  <script type="text/javascript">
-      window.onload = function() {
-          document.getElementById('contact-form').addEventListener('submit', function(event) {
-              event.preventDefault();
-              // these IDs from the previous steps
-              emailjs.sendForm('contact_service', 'contact_form', this)
-                  .then(() => {
-                      console.log('SUCCESS!');
-                  }, (error) => {
-                      console.log('FAILED...', error);
-                  });
-          });
-      }
-  </script>
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -693,19 +672,19 @@
 
         <!-- Contact Form Section -->
         <div class="col-lg-5 col-md-8 col-sm-12 mt-4">
-          <form id="contact_form" class="vg-contact-form">
+          <form id="contact-form" class="vg-contact-form">
             <div class="form-row justify-content-center">
               <div class="col-12 mt-3 wow fadeInUp">
-                <input class="form-control" type="text" name="Name" placeholder="Your Name">
+                <input class="form-control" type="text" id="Name" name="Name" placeholder="Your Name">
               </div>
               <div class="col-6 mt-3 wow fadeInUp">
-                <input class="form-control" type="text" name="Email" placeholder="Email Address">
+                <input class="form-control" type="text" id="Email" name="Email" placeholder="Email Address">
               </div>
               <div class="col-6 mt-3 wow fadeInUp">
-                <input class="form-control" type="text" name="Subject" placeholder="Subject">
+                <input class="form-control" type="text" id="Subject" name="Subject" placeholder="Subject">
               </div>
               <div class="col-12 mt-3 wow fadeInUp">
-                <textarea class="form-control" name="Message" rows="6" placeholder="Enter message here.."></textarea>
+                <textarea class="form-control" id="Message" name="Message" rows="6" placeholder="Enter message here.."></textarea>
               </div>
               <button type="submit" class="btn btn-theme mt-3 wow fadeInUp ml-1">Send Message</button>
             </div>
@@ -801,6 +780,35 @@
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIA_zqjFMsJM_sxP9-6Pde5vVCTyJmUHM&callback=initMap"></script>
 
+    <script type="text/javascript">
+      (function() {
+          // https://dashboard.emailjs.com/admin/account
+          emailjs.init({
+            publicKey: "JBLnPIKPKTW7Pf0G7",
+          });
+      })();
+  </script>
+  <script type="text/javascript">
+      window.onload = function() {
+          document.getElementById('contact-form').addEventListener('submit', function(event) {
+              event.preventDefault();
+              const my_params = {
+                name:document.getElementById('Name').value,
+                email:document.getElementById('Email').value,
+                subject:document.getElementById('Subject').value,
+                message:document.getElementById('Message').value,
+              }
+              console.log(my_params)
+              // these IDs from the previous steps
+              emailjs.send('service_66d5fsd', 'template_bd4ihf8', my_params)
+                  .then(() => {
+                      console.log('SUCCESS!');
+                  }, (error) => {
+                      console.log('FAILED...', error);
+                  });
+          });
+      }
+  </script>
 </body>
 
 </html>
