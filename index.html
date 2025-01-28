@@ -803,6 +803,11 @@
               emailjs.send('service_66d5fsd', 'template_bd4ihf8', my_params)
                   .then(() => {
                       console.log('SUCCESS!');
+                      alert("Thanks for Reaching")
+                      document.getElementById('Name').value=""
+                      document.getElementById('Email').value=""
+                      document.getElementById('Subject').value=""
+                      document.getElementById('Message').value=""
                   }, (error) => {
                       console.log('FAILED...', error);
                   });
